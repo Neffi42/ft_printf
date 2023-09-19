@@ -68,10 +68,10 @@ fclean: clean
 re: fclean all
 
 ${NAME}: ${OBJS}
-	@ar rcs -o ${NAME} ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
 
 bonus: fclean ${OBJS} ${B_OBJS}
-	@ar rcs -o ${NAME} ${OBJS} ${B_OBJS}
+	@ar rcs ${NAME} ${OBJS} ${B_OBJS}
 
 norme:
 	watch norminette
