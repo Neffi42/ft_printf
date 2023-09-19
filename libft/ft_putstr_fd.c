@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:57:19 by abasdere          #+#    #+#             */
-/*   Updated: 2023/08/08 16:25:03 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:04:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,5 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-		ft_putchar_fd(s[i++], fd);
+	write(fd, s, ft_strlen(s));
 }

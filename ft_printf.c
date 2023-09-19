@@ -6,22 +6,31 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/19 15:38:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:17:37 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-#include <stdio.h>
-
 int	ft_printf(const char *format, ...)
 {
+	int	i;
+	int	start;
 	// va_list	ap;
-	int		count_args;
 	// char	*x;
 
-	count_args = count_char(format, '%');
-	printf("%d\n", count_args);
+	i = -1;
+	start = 0;
+	while (format[++i])
+	{
+		if (format[i] == '%' || (!format[i + 1] && start))
+		{
+			write(1, &(format[start]), i + 1 - start);
+			start = i + 1;
+		}
+	}
+	if (!start)
+		ft_putstr_fd(format, 1);
 	// va_start(ap, format);
 	// x = va_arg(ap, char *);
 	// printf("%s\n%d\n", x, count_args);
