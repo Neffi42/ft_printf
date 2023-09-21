@@ -1,8 +1,10 @@
-SRCS = ft_printf.c
+SRCS =	ft_printf.c \
+		ft_putnbr_base.c
 OBJS = ${SRCS:.c=.o}
 NAME = libftprintf.a
+TEST = test
 LIBFT = libft
-LIBFLAGS = -Llibft -lft
+LIBFLAGS = -L. -lftprintf
 RM = rm -f
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -23,7 +25,7 @@ fclean: clean
 
 re: fclean all
 
-libft.a:
+${LIBFT}.a:
 	@$(MAKE) -C ${LIBFT} bonus
 
 ${NAME}: libft.a ${OBJS}
@@ -31,7 +33,13 @@ ${NAME}: libft.a ${OBJS}
 	@mv ${LIBFT}.a ${NAME}
 	@ar rcs ${NAME} ${OBJS}
 
+${TEST}: re tclean
+	@${CC} ${CFLAGS} -g3 ${TEST}.c ${LIBFLAGS} -o ${TEST}
+
+tclean:
+	@${RM} ${TEST}
+
 norme:
 	watch norminette
 
-.PHONY = ${NAME} clean fclean re all debug norme libft.a
+.PHONY = ${NAME} clean fclean re all debug norme ${LIBFT}.a ${TEST}
