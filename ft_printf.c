@@ -6,11 +6,16 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/22 09:52:28 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:17:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static int	unsg_putnbr_base(unsigned int n, char *base)
+{
+	return (ft_putnbr_base(n, base));
+}
 
 static int	convert_flag(char c, va_list *ap)
 {
@@ -21,30 +26,44 @@ static int	convert_flag(char c, va_list *ap)
 	else if (c == 'p')
 	{
 		ft_putstr_fd("0x", 1);
-		return (2 + ft_putnbr_base((long)va_arg(*ap, char *), HEXA_BASE_LO));
+		return (2 + ft_putnbr_base((long)va_arg(*ap, char *), HEX_BASE_LO));
 	}
-	else if (c == 'd')
+	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE));
+	else if (c == 'u')
+		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), DECI_BASE));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(*ap, int), HEXA_BASE_LO));
+		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), HEX_BASE_LO));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(*ap, int), HEXA_BASE_UP));
+		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), HEX_BASE_UP));
 	else if (c == '%')
 		ft_putchar_fd('%', 1);
+	else
+		return (0);
 	return (1);
 }
 
 static int	read_flag(const char *s, va_list *ap, int i, int *len)
 {
 	char	c;
+	int		l;
 
-	c = s[i +1];
+	c = s[i + 1];
+	l = 0;
 	if (ft_strnstr(CHAR_FLAGS, &c, ft_strlen(CHAR_FLAGS)))
 		return (0);
 	else if (ft_strnstr(LEN_FLAGS, &c, ft_strlen(LEN_FLAGS)))
 		return (0);
 	else if (ft_strnstr(CONV_FLAGS, &c, ft_strlen(CONV_FLAGS)))
-		*len += convert_flag(s[i + 1], ap);
+	{
+		l = convert_flag(s[i + 1], ap);
+		if (!l)
+		{
+			*len += 1;
+			return (0);
+		}
+		*len += l;
+	}
 	return (1);
 }
 
