@@ -6,16 +6,17 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:56:31 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/21 14:06:10 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:48:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_putnbr_base_recu(long n, char *base, size_t b_size)
+static void	ft_putnbr_base_recu(long n, char *base, size_t b_size, int *len)
 {
+	*len = *len + 1;
 	if (n / b_size)
-		ft_putnbr_base_recu(n / b_size, base, b_size);
+		ft_putnbr_base_recu(n / b_size, base, b_size, len);
 	n = base[n % b_size];
 	write(1, &n, 1);
 }
@@ -41,12 +42,12 @@ static int	ft_check_base(char *base, size_t b_size)
 	return (1);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base(long n, char *base)
 {
 	size_t	b_size;
-	long	n;
+	int		len;
 
-	n = nbr;
+	len = 0;
 	b_size = ft_strlen(base);
 	if (ft_check_base(base, b_size))
 	{
@@ -55,7 +56,7 @@ void	ft_putnbr_base(int nbr, char *base)
 			write(1, "-", 1);
 			n = -n;
 		}
-		ft_putnbr_base_recu(n, base, b_size);
+		ft_putnbr_base_recu(n, base, b_size, &len);
 	}
-	return ;
+	return (len);
 }

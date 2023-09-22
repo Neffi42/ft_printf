@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/21 13:51:40 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:52:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ static int	convert_flag(char c, va_list *ap)
 		ft_putchar_fd(va_arg(*ap, int), 1);
 	else if (c == 's')
 		ft_putstr_fd(va_arg(*ap, char *), 1);
+	else if (c == 'p')
+	{
+		ft_putstr_fd("0x", 1);
+		return (2 + ft_putnbr_base((long)va_arg(*ap, char *), HEXA_BASE_LO));
+	}
+	else if (c == 'd')
+		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE));
+	else if (c == 'x')
+		return (ft_putnbr_base(va_arg(*ap, int), HEXA_BASE_LO));
+	else if (c == 'X')
+		return (ft_putnbr_base(va_arg(*ap, int), HEXA_BASE_UP));
+	else if (c == '%')
+		ft_putchar_fd('%', 1);
 	return (1);
 }
 
@@ -42,6 +55,7 @@ int	ft_printf(const char *s, ...)
 	int		len;
 	va_list	ap;
 
+	i = -1;
 	start = 0;
 	len = 0;
 	va_start(ap, s);
