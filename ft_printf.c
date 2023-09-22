@@ -6,11 +6,17 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/22 19:17:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:53:41 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static int	count_putstr_fd(const char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	return ((int)ft_strlen(s));
+}
 
 static int	unsg_putnbr_base(unsigned int n, char *base)
 {
@@ -22,7 +28,7 @@ static int	convert_flag(char c, va_list *ap)
 	if (c == 'c')
 		ft_putchar_fd(va_arg(*ap, int), 1);
 	else if (c == 's')
-		ft_putstr_fd(va_arg(*ap, char *), 1);
+		return (count_putstr_fd(va_arg(*ap, char *), 1));
 	else if (c == 'p')
 	{
 		ft_putstr_fd("0x", 1);
@@ -31,7 +37,7 @@ static int	convert_flag(char c, va_list *ap)
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE));
 	else if (c == 'u')
-		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), DECI_BASE));
+		return (unsg_putnbr_base((MAX_UNSG_INT + va_arg(*ap, int)), DECI_BASE));
 	else if (c == 'x')
 		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), HEX_BASE_LO));
 	else if (c == 'X')

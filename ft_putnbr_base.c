@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:56:31 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/22 09:48:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:53:35 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	ft_putnbr_base(long n, char *base)
 		{
 			write(1, "-", 1);
 			n = -n;
+			len++;
 		}
 		ft_putnbr_base_recu(n, base, b_size, &len);
 	}
