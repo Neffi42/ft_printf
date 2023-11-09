@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/09 11:49:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:19:03 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_printf(const char *s, ...)
 	{
 		if (!s[i + 1])
 			write(1, &(s[start]), i + 1 - start);
-		else if (s[i] == '%')
+		if (s[i] == '%')
 		{
 			write(1, &(s[start]), i - start);
 			i += read_flag(s, &ap, i, &len);
@@ -42,12 +42,10 @@ int	ft_printf(const char *s, ...)
 
 int	read_flag(const char *s, va_list *ap, int i, int *len)
 {
-	char	c;
 	int		l;
 
-	c = s[i + 1];
 	l = 0;
-	if (ft_strnstr(CONV_FLAGS, &c, ft_strlen(CONV_FLAGS)))
+	if (ft_strchr(CONV_FLAGS, s[i + 1]))
 	{
 		l = convert_flag(s[i + 1], ap);
 		if (!l)
@@ -55,6 +53,8 @@ int	read_flag(const char *s, va_list *ap, int i, int *len)
 			*len += 1;
 			return (0);
 		}
+		else if (l == -1)
+			return (1);
 		*len += l;
 	}
 	return (1);
@@ -65,20 +65,17 @@ int	convert_flag(char c, va_list *ap)
 	if (c == 'c')
 		return (count_putchar_fd(va_arg(*ap, int), 1));
 	else if (c == 's')
-		return (count_putstr_fd(va_arg(*ap, char *), 1));
+		return (s_flag(va_arg(*ap, char *)));
 	else if (c == 'p')
-	{
-		ft_putstr_fd("0x", 1);
-		return (2 + ft_putnbr_base((long)va_arg(*ap, char *), HEX_BASE_LO));
-	}
+		return (p_flag(va_arg(*ap, unsigned long)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE));
 	else if (c == 'u')
-		return (unsg_putnbr_base((MAX_UNSG_INT + va_arg(*ap, int)), DECI_BASE));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), DECI_BASE));
 	else if (c == 'x')
-		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), HEX_BASE_LO));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_LO));
 	else if (c == 'X')
-		return (unsg_putnbr_base(MAX_UNSG_INT + va_arg(*ap, int), HEX_BASE_UP));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_UP));
 	else if (c == '%')
 		return (count_putchar_fd('%', 1));
 	return (0);

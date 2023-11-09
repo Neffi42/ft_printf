@@ -13,6 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdio.h>
+
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,14 +25,16 @@ int	read_flag(const char *s, va_list *ap, int i, int *len);
 int	convert_flag(char c, va_list *ap);
 int	count_putchar_fd(char c, int fd);
 int	count_putstr_fd(const char *s, int fd);
-int	unsg_putnbr_base(unsigned int n, char *base);
 int	ft_putnbr_base(long n, char *base);
+int	ft_putun_nbr_base(unsigned long n, char *base);
+int	s_flag(char *s);
+int	p_flag(unsigned long p);
+int	ft_check_base(char *base, size_t b_size);
 
 # define CONV_FLAGS "cspdiuxX%"
 # define DECI_BASE  "0123456789"
-# define HEX_BASE_LO "0123456789abcdef"
-# define HEX_BASE_UP "0123456789ABCDEF"
-# define MAX_UNSG_INT 4294967296
+# define X_BASE_LO "0123456789abcdef"
+# define X_BASE_UP "0123456789ABCDEF"
 
 typedef struct s_arg
 {

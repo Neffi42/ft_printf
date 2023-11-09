@@ -1,6 +1,7 @@
 SRCS =	ft_printf.c \
 		ft_printf_utils.c \
-		ft_putnbr_base.c
+		ft_putnbr_base.c \
+		ft_putun_nbr_base.c
 OBJS = ${SRCS:.c=.o}
 NAME = libftprintf.a
 TEST = test
@@ -26,7 +27,7 @@ fclean: clean
 
 re: fclean all Makefile
 
-${LIBFT}.a:
+${LIBFT}.a: ${LIBFT}/Makefile
 	@$(MAKE) -C ${LIBFT} bonus
 
 ${NAME}: ${LIBFT}.a ${OBJS}
