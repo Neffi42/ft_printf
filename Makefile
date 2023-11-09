@@ -1,4 +1,5 @@
 SRCS =	ft_printf.c \
+		ft_printf_utils.c \
 		ft_putnbr_base.c
 OBJS = ${SRCS:.c=.o}
 NAME = libftprintf.a
