@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:56:31 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/09 16:26:26 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:40:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_check_base(char *base, size_t b_size)
 	return (1);
 }
 
-int	ft_putnbr_base(long  n, char *base)
+int	ft_putnbr_base(long n, char *base)
 {
 	size_t	b_size;
 	int		len;

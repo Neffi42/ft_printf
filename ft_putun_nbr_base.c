@@ -6,13 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:24:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/09 16:25:33 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:40:58 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_base_recu(unsigned long n, char *base, size_t b_size, int *len)
+static void	ft_nb_recu(unsigned long n, char *base, size_t b_size, int *len)
 {
 	*len = *len + 1;
 	if (n / b_size)
@@ -36,7 +36,7 @@ int	ft_putun_nbr_base(unsigned long n, char *base)
 			n = -n;
 			len++;
 		}
-		ft_putnbr_base_recu(n, base, b_size, &len);
+		ft_nb_recu(n, base, b_size, &len);
 	}
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:42:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/09 16:27:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:41:12 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int	s_flag(char *s)
 
 int	p_flag(unsigned long p)
 {
-
 	if (!p)
 		return (count_putstr_fd("(nil)", 1));
 	ft_putstr_fd("0x", 1);
-	// printf("%lu", p);
 	return (2 + ft_putun_nbr_base((long long)p, X_BASE_LO));
 }
