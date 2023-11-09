@@ -10,10 +10,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 
-all: ${NAME}
+all: ${NAME} Makefile
 
-.c.o:
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+%.o: %.c Makefile
+	@${CC} ${CFLAGS} -c $<
 
 clean:
 	@${RM} ${OBJS} ${B_OBJS}
@@ -23,12 +23,12 @@ fclean: clean
 	@${RM} ${NAME}
 	@$(MAKE) -C ${LIBFT} fclean
 
-re: fclean all
+re: fclean all Makefile
 
 ${LIBFT}.a:
 	@$(MAKE) -C ${LIBFT} bonus
 
-${NAME}: libft.a ${OBJS}
+${NAME}: ${LIBFT}.a ${OBJS}
 	@cp ${LIBFT}/${LIBFT}.a .
 	@mv ${LIBFT}.a ${NAME}
 	@ar rcs ${NAME} ${OBJS}

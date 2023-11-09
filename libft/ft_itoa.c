@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:49:26 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 17:25:08 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:08:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*ft_itoa(int n)
 	if (!str_n)
 		return (NULL);
 	str_n[count--] = '\0';
+	if (!nbr)
+		str_n[count--] = nbr + '0';
 	while (nbr)
 	{
 		str_n[count--] = nbr % 10 + '0';

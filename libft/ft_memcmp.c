@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:03:01 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/05 19:19:09 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:42:36 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	s2_ptr = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (i < n && (s1_ptr[i] || s2_ptr[i]))
-	{
-		if (s1_ptr[i] != s2_ptr[i])
-			return (s1_ptr[i] - s2_ptr[i]);
+	while (i + 1 < n && s1_ptr[i] == s2_ptr[i])
 		i++;
-	}
-	return (0);
+	return (s1_ptr[i] - s2_ptr[i]);
 }

@@ -6,11 +6,23 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:59:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 09:59:51 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:34:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+
+static	int	get_mem_size(size_t nmemb, size_t size)
+{
+	int	x;
+
+	if (!size)
+		return (0);
+	x = nmemb * size;
+	if (x / size != nmemb)
+		return (-1);
+	return (x);
+}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -18,7 +30,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	int				mem_size;
 
 	ptr = 0;
-	mem_size = nmemb * size;
+	mem_size = get_mem_size(nmemb, size);
 	if (mem_size < 0)
 		return (NULL);
 	ptr = malloc(mem_size);

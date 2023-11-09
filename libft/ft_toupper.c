@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:14:19 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/08 15:12:36 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:06:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	if (ft_islower(c))
+	if (c >= 'a' && c <= 'z')
 		return (c - ('a' - 'A'));
 	return (c);
 }

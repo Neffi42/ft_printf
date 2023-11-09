@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_endl.c                                :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 15:22:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/08/08 16:25:03 by abasdere         ###   ########.fr       */
+/*   Created: 2023/09/07 18:27:21 by abasdere          #+#    #+#             */
+/*   Updated: 2023/11/06 11:26:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_putnbr_fd_endl(int n, int fd)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	ft_putnbr_fd(n, fd);
-	ft_putchar_fd('\n', fd);
+	t_list	*temp;
+
+	temp = *lst;
+	new->next = temp;
+	*lst = new;
 }

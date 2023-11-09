@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:38:44 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 16:26:56 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:57:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,28 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	size_s;
 	char	*sub;
 
-	i = -1;
+	i = 0;
+	size_s = ft_strlen(s);
+	if (size_s < start)
+	{
+		sub = ft_calloc(1, sizeof(char));
+		*sub = '\0';
+		return (sub);
+	}
+	if (len > size_s - start)
+		len = size_s - start;
 	sub = ft_calloc(len + 1, sizeof(char));
 	if (!sub)
 		return (NULL);
-	while (++i < len)
+	while (i < len && i < size_s)
+	{
 		sub[i] = s[start + i];
-	sub[i] = '\0';
+		i++;
+	}
+	while (i < len)
+		sub[i++] = '\0';
 	return (sub);
 }
