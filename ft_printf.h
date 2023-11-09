@@ -19,10 +19,13 @@
 # include "libft/libft.h"
 
 int	ft_printf(const char *format, ...);
+int	read_flag(const char *s, va_list *ap, int i, int *len);
+int	convert_flag(char c, va_list *ap);
+int	count_putchar_fd(char c, int fd);
+int	count_putstr_fd(const char *s, int fd);
+int	unsg_putnbr_base(unsigned int n, char *base);
 int	ft_putnbr_base(long n, char *base);
 
-# define CHAR_FLAGS "-0.# +"
-# define LEN_FLAGS "*$12"
 # define CONV_FLAGS "cspdiuxX%"
 # define DECI_BASE  "0123456789"
 # define HEX_BASE_LO "0123456789abcdef"
