@@ -29,6 +29,7 @@ int	s_flag(char *s);
 int	p_flag(unsigned long p);
 int	ft_check_base(char *base, size_t b_size);
 
+# define FLAGS "-0.# +$2*1cspdiuxX%"
 # define CONV_FLAGS "cspdiuxX%"
 # define DECI_BASE  "0123456789"
 # define X_BASE_LO "0123456789abcdef"
