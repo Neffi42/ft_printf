@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 17:27:00 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 17:56:01 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:35:25 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t	i;
 	char	*mapi;
 
+	if (!s)
+		return (NULL);
 	i = -1;
 	mapi = ft_strdup(s);
 	if (!mapi)

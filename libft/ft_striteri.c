@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 17:28:03 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 17:56:00 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:41:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	size_t	i;
 
+	if (!s)
+		return ;
 	i = -1;
 	while (s[++i])
 		f(i, &(s[i]));

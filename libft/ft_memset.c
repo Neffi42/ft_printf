@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 09:43:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/04 20:02:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/15 08:56:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char	*ptr;
 	size_t			i;
 
-	ptr = (unsigned char *)s;
 	i = 0;
 	while (i < n)
-		ptr[i++] = c;
+		((unsigned char *)s)[i++] = c;
 	return (s);
 }

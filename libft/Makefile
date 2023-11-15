@@ -52,9 +52,10 @@ CFLAGS = -Wall -Wextra -Werror
 TEST = test.c
 
 
-all: ${NAME} Makefile
+all: ${NAME}
 
-%.o: %.c Makefile
+%.o: %.c
+	@echo "-Compiling $^"
 	@${CC} ${CFLAGS} -c $<
 
 clean:
@@ -63,12 +64,14 @@ clean:
 fclean: clean
 	@${RM} ${NAME}
 
-re: fclean all Makefile
+re: fclean all
 
 ${NAME}: ${OBJS}
+	@echo "-Creating ${NAME}"
 	@ar rcs ${NAME} ${OBJS}
 
-bonus: fclean ${OBJS} ${B_OBJS} Makefile
+bonus: ${OBJS} ${B_OBJS}
+	@echo "-Creating ${NAME} with bonus functions"
 	@ar rcs ${NAME} ${OBJS} ${B_OBJS}
 
 norme: ${test.c}
@@ -77,4 +80,4 @@ norme: ${test.c}
 test: bonus
 	@${CC} -g3 ${TEST} ${NAME}
 
-.PHONY = ${NAME} clean fclean re all debug norme bonus test
+.PHONY = clean fclean re all debug norme bonus test

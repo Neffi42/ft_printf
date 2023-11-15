@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:59:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/10 09:33:11 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:34:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	int				mem_size;
 
 	ptr = 0;
-	if (nmemb < 0 || size < 0)
-		return (NULL);
 	mem_size = nmemb * size;
 	if (size && mem_size / size != nmemb)
 		return (NULL);

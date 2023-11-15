@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:51:49 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/04 20:25:53 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:22:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,17 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t		i;
-	char		*dest_ptr;
-	const char	*src_ptr;
+	size_t			i;
 
-	dest_ptr = (char *)dest;
-	src_ptr = (const char *)src;
-	if (dest - src <= 0)
-	{
-		i = -1;
-		while (++i < n)
-			dest_ptr[i] = src_ptr[i];
-	}
-	else
+	if (!dest && !src)
+		return (NULL);
+	if (dest > src)
 	{
 		i = n;
-		while (--i > 0)
-			dest_ptr[i] = src_ptr[i];
-		dest_ptr[i] = src_ptr[i];
+		while (i-- > 0)
+			((unsigned char *)dest)[i] = ((const unsigned char *)src)[i];
 	}
+	else
+		ft_memcpy(dest, src, n);
 	return (dest);
 }

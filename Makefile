@@ -15,6 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: ${NAME} Makefile
 
 %.o: %.c Makefile
+	@echo "-Compiling $^"
 	@${CC} ${CFLAGS} -c $<
 
 clean:
@@ -33,13 +34,11 @@ ${LIBFT}.a: ${LIBFT}/Makefile
 ${NAME}: ${LIBFT}.a ${OBJS}
 	@cp ${LIBFT}/${LIBFT}.a .
 	@mv ${LIBFT}.a ${NAME}
+	@echo "-Creating ${NAME}"
 	@ar rcs ${NAME} ${OBJS}
 
 ${TEST}: re tclean
 	@${CC} ${CFLAGS} -g3 ${TEST}.c ${LIBFLAGS} -o ${TEST}
-
-tclean:
-	@${RM} ${TEST}
 
 norme:
 	watch norminette

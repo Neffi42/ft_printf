@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 21:08:08 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/04 21:09:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:28:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
+	if (!dst && !size)
+		return (0);
 	size_src = ft_strlen(src);
 	size_dst = ft_strlen(dst);
 	if (size < size_dst)

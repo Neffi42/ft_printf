@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:05:35 by abasdere          #+#    #+#             */
-/*   Updated: 2023/09/07 16:43:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/14 09:34:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	**ft_split(char const *s, char c)
 	char const	*next;
 	char		**split_s;
 
+	if (!s)
+		return (NULL);
 	i = -1;
 	cw = count_words(s, c);
 	split_s = ft_calloc(cw + 1, sizeof(char *));
