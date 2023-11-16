@@ -16,18 +16,19 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
 
-int	ft_printf(const char *format, ...);
-int	read_flag(const char *s, va_list *ap, int i, int *len);
-int	convert_flag(char c, va_list *ap);
-int	count_putchar_fd(char c, int fd);
-int	count_putstr_fd(const char *s, int fd);
-int	ft_putnbr_base(long n, char *base);
-int	ft_putun_nbr_base(unsigned long n, char *base);
-int	s_flag(char *s);
-int	p_flag(unsigned long p);
-int	ft_check_base(char *base, size_t b_size);
+int		ft_printf(const char *format, ...);
+int		read_flag(const char *s, va_list *ap, int i, int *len);
+int		convert_flag(char c, va_list *ap);
+int		count_putchar_fd(char c, int fd);
+int		putstr_len(const char *s, int fd);
+int		ft_putnbr_base(long n, char *base, int fd);
+int		put_unbr_base(unsigned long n, char *base, int fd);
+int		s_flag(char *s, int fd);
+int		p_flag(unsigned long p, int fd);
+int		ft_check_base(char *base, size_t b_size);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
 
 # define FLAGS "-0.# +$2*1cspdiuxX%"
 # define CONV_FLAGS "cspdiuxX%"

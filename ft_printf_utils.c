@@ -6,37 +6,51 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:42:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/09 16:41:12 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:19:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 int	count_putchar_fd(char c, int fd)
 {
-	ft_putchar_fd(c, fd);
+	write(fd, &c, 1);
 	return (1);
 }
 
-int	count_putstr_fd(const char *s, int fd)
+int	putstr_len(const char *s, int fd)
 {
-	ft_putstr_fd(s, fd);
-	return ((int)ft_strlen(s));
+	size_t	len;
+
+	len = ft_strlen(s);
+	write(fd, s, len);
+	return ((int)len);
 }
 
-int	s_flag(char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	if (!s)
-		return (count_putstr_fd("(null)", 1));
-	if (!(*s))
-		return (-1);
-	return (count_putstr_fd(s, 1));
-}
+	char	ch;
+	int		i;
 
-int	p_flag(unsigned long p)
-{
-	if (!p)
-		return (count_putstr_fd("(nil)", 1));
-	ft_putstr_fd("0x", 1);
-	return (2 + ft_putun_nbr_base((long long)p, X_BASE_LO));
+	ch = c;
+	i = 0;
+	while (((char *)s)[i])
+	{
+		if (ch == ((char *)s)[i])
+			return (((char *)s) + i);
+		i++;
+	}
+	if (ch == ((char *)s)[i])
+		return (((char *)s) + i);
+	return (NULL);
 }

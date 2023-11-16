@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:04:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/10 10:00:20 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:23:22 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,40 @@ int	read_flag(const char *s, va_list *ap, int i, int *len)
 
 int	convert_flag(char c, va_list *ap)
 {
+	int	fd;
+
+	fd = 1;
 	if (c == 'c')
-		return (count_putchar_fd(va_arg(*ap, int), 1));
+		return (count_putchar_fd(va_arg(*ap, int), fd));
 	else if (c == 's')
-		return (s_flag(va_arg(*ap, char *)));
+		return (s_flag(va_arg(*ap, char *), fd));
 	else if (c == 'p')
-		return (p_flag(va_arg(*ap, unsigned long)));
+		return (p_flag(va_arg(*ap, unsigned long), fd));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE));
+		return (ft_putnbr_base(va_arg(*ap, int), DECI_BASE, fd));
 	else if (c == 'u')
-		return (ft_putnbr_base(va_arg(*ap, unsigned int), DECI_BASE));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), DECI_BASE, fd));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_LO));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_LO, fd));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_UP));
+		return (ft_putnbr_base(va_arg(*ap, unsigned int), X_BASE_UP, fd));
 	else if (c == '%')
-		return (count_putchar_fd('%', 1));
+		return (count_putchar_fd('%', fd));
 	return (0);
+}
+
+int	s_flag(char *s, int fd)
+{
+	if (!s)
+		return (putstr_len("(null)", fd));
+	if (!(*s))
+		return (-1);
+	return (putstr_len(s, fd));
+}
+
+int	p_flag(unsigned long p, int fd)
+{
+	if (!p)
+		return (putstr_len("(nil)", fd));
+	return (putstr_len("0x", fd) + put_unbr_base((long long)p, X_BASE_LO, fd));
 }
